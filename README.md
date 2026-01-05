@@ -31,11 +31,17 @@ The project is designed as a system-level networking application for learning an
 
 ## Project Structure
 .
+
 ├── proxy_server_with_cache.c
+
 ├── proxy_server_without_cache.c
+
 ├── proxy_parse.c
+
 ├── proxy_parse.h
+
 ├── Makefile
+
 └── README.md
 
 ---
