@@ -59,6 +59,10 @@ int ParsedHeader_remove (struct ParsedRequest *pr, const char * key);
 
 void debug(const char * format, ...);
 
+/* 
+   ParsedRequest Public Methods
+*/
+
 
 
 #endif
