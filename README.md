@@ -55,8 +55,8 @@ The project is designed as a system-level networking application for learning an
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/proxy-server-c.git
-   cd proxy-server-c
+   git clone https://github.com/nikkx01/MultiThreadedProxyWebServer.git
+   cd MultiThreadedProxyWebServer
 
 2. Choose the version to run:
 
