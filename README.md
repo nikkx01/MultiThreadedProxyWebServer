@@ -51,3 +51,39 @@ The project is designed as a system-level networking application for learning an
 ### Prerequisites
 - GCC Compiler
 - Linux or macOS (Windows via WSL supported)
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/proxy-server-c.git
+   cd proxy-server-c
+
+2. Choose the version to run:
+
+* For cached proxy:
+  Update Makefile to use proxy_server_with_cache.c
+
+* For non-cached proxy:
+  Update Makefile to use proxy_server_without_cache.c
+
+3. Compile the project:
+   make
+
+4. Run the proxy server:
+   ./proxy 8080
+
+## How to use
+This is a local system-level application and is not hosted online.
+1. Start the proxy server on a local port
+2. Configure your browser’s proxy settings:
+   * Server: 127.0.0.1
+   * Port: 8080
+3. Browse any HTTP website normally
+4. Observe terminal logs for request handling and cache hits/misses
+
+## Learning Outcomes
+* Understanding proxy server architecture
+* Hands-on experience with socket programming
+* Practical use of multi-threading and synchronization
+* Exposure to HTTP request/response handling
+* Cache design and performance optimization
