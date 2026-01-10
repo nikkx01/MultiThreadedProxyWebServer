@@ -1,9 +1,19 @@
 #include "proxy_parse.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <time.h>
+#include <errno.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <time.h>
 
 #define MAX_CLIENTS 10
 
@@ -27,6 +37,18 @@ pthread_t tid[MAX_CLIENTS];
 sem_t semaphore;
 pthread_mutex_t lock;
   
+cache_element* head;
+int cache_size;
+
+int main(int argc, char *argv[]) {
+    int client_socketId, client_len;
+    struct sockaddr server_addr , client_addr;
+    sem_init(&semaphore,0, MAX_CLIENTS);
+    pthread_mutex_init(&lock, NULL);
+    if(argv ==2){
+        port_number = atoi (argv[1]);
+    }else{}
+}
 
 
 
