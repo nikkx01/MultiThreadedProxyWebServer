@@ -50,7 +50,11 @@ int main(int argc, char *argv[]) {
     }else{
         printf("Too few arguments\n");
         exit(1);
+    }
 }
+
+
+
 
 
 
