@@ -47,7 +47,9 @@ int main(int argc, char *argv[]) {
     pthread_mutex_init(&lock, NULL);
     if(argv ==2){
         port_number = atoi (argv[1]);
-    }else{}
+    }else{
+        printf("Too few arguments\n");
+        exit(1);
 }
 
 
