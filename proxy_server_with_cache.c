@@ -51,6 +51,9 @@ int main(int argc, char *argv[]) {
         printf("Too few arguments\n");
         exit(1);
     }
+
+    printf("Starting proxy server on port %d\n", port_number);
+    proxy_socketId = socket(AF_INET, SOCK_STREAM, 0);
 }
 
 
