@@ -54,6 +54,16 @@ int main(int argc, char *argv[]) {
 
     printf("Starting proxy server on port %d\n", port_number);
     proxy_socketId = socket(AF_INET, SOCK_STREAM, 0);
+    if (proxy_socketId < 0) {
+        perror("Failed to create socket");
+        exit(1);
+    }
+    int reuse = 1;
+    if (setsockopt(proxy_socketId, SOL_SOCKET, SO_REUSEADDR, (const char*)&reuse, sizeof(reuse)) < 0) {
+        perror("setsockopt failed\n");
+    }
+    
+    
 }
 
 
