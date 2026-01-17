@@ -81,10 +81,13 @@ int main(int argc, char *argv[]) {
     int i = 0;
     int connected_socketId[MAX_CLIENTS];
     while (1) {
+        client_len = sizeof(client_addr);   
+        client_socketId = accept(proxy_socketId, (struct sockaddr *) &client_addr, &client_len);
+        if (client_socketId < 0) {
+            
+        }
+    
 }
-
-
-
 
 
 
