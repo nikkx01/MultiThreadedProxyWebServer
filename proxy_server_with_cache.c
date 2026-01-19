@@ -16,6 +16,7 @@
 #include <time.h>
 
 #define MAX_CLIENTS 10
+#define MAX_BYTES 4096 
 
 typedef struct cache_element cache_element;
 
@@ -46,7 +47,14 @@ void *thread_fn(void *socketNew){
     sem_getvalue(&semaphore, &p);
     printf("semaphore value is:\n", p);
     int *t = (int *)socketNew;
-    int socket
+    int socket = *t;
+    int bytes_send_client, len;
+
+    char *buffer = (char *)calloc(MAX_BYTES, sizeof(char));
+    bzero(buffer, MAX_BYTES);
+    bytes_send_client = recv(socket, buffer, MAX_BYTES, 0);
+
+
 }
 int main(int argc, char *argv[]) {
     int client_socketId, client_len;
@@ -110,7 +118,7 @@ int main(int argc, char *argv[]) {
         i++;
     }
     
-    }
+    
     
 }
 
