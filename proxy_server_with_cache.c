@@ -40,6 +40,14 @@ pthread_mutex_t lock;
 cache_element* head;
 int cache_size;
 
+void *thread_fn(void *socketNew){
+    sem_wait(&semaphore);
+    int p;
+    sem_getvalue(&semaphore, &p);
+    printf("semaphore value is:\n", p);
+    int *t = (int *)socketNew;
+    int socket
+}
 int main(int argc, char *argv[]) {
     int client_socketId, client_len;
     struct sockaddr_in server_addr , client_addr;
@@ -93,6 +101,15 @@ int main(int argc, char *argv[]) {
         }
 
         struct sockaddr_in * client_pt = (struct sockaddr_in *) &client_addr;
+        struct in_addr ip_addr = client_pt->sin_addr;
+        char str_addr[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &ip_addr, str_addr, INET_ADDRSTRLEN);
+        printf("Client is connected with port number %d and ip address is %s\n", ntohs(client_addr.sin_port), str_addr);
+    
+        pthread_create(&tid[i], NULL, thread_fn, (void *)&Connected_socketId[i]);
+        i++;
+    }
+    
     }
     
 }
