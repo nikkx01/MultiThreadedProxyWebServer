@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
         struct in_addr ip_addr = client_pt->sin_addr;
         char str_addr[INET_ADDRSTRLEN];
         inet_ntop(AF_INET, &ip_addr, str_addr, INET_ADDRSTRLEN);
-        printf("Client is connected with port number %d and ip address is %s\n", ntohs(client_addr.sin_port), str_addr);
+        printf("Client is connected with port number %d and ip address is %s\n", ntohs(client_addr.sin_port), str);
     
         pthread_create(&tid[i], NULL, thread_fn, (void *)&Connected_socketId[i]);
         i++;
