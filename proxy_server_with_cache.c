@@ -110,8 +110,8 @@ int main(int argc, char *argv[]) {
 
         struct sockaddr_in * client_pt = (struct sockaddr_in *) &client_addr;
         struct in_addr ip_addr = client_pt->sin_addr;
-        char str_addr[INET_ADDRSTRLEN];
-        inet_ntop(AF_INET, &ip_addr, str_addr, INET_ADDRSTRLEN);
+        char str[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &ip_addr, str, INET_ADDRSTRLEN);
         printf("Client is connected with port number %d and ip address is %s\n", ntohs(client_addr.sin_port), str);
     
         pthread_create(&tid[i], NULL, thread_fn, (void *)&Connected_socketId[i]);
