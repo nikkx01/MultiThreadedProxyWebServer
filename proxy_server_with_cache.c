@@ -54,6 +54,43 @@ void *thread_fn(void *socketNew){
     bzero(buffer, MAX_BYTES);
     bytes_send_client = recv(socket, buffer, MAX_BYTES, 0);
 
+    while(bytes_send_client > 0){
+        len = strlen(buffer);
+        if(strstr(buffer,"\r\n\r\n") == NULL){
+            bytes_send_client = recv(socket, buffer + len, MAX_BYTES-len, 0);
+        }else{
+            break;
+        }
+    }
+
+    char *tempReq = (char *)malloc(strlen(buffer)* sizeof(char)+1);
+    for(int i=0; i<strlen(buffer)+1; i++){
+        tempReq[i] = buffer[i];
+    }
+    struct cache_element* temp = find(tempReq);
+    if(temp != NULL){
+        int size = temp->len/sizeof(char);
+        int pos = 0;
+        char response[MAX_BYTES];
+        while(pos<size){
+            bzero(response, MAX_BYTES);
+            for(int i=0; i<MAX_BYTES; i++){
+                response[i] = temp->data[i];
+                pos++;
+            }
+            send(socket, response, MAX_BYTES, 0);
+        }
+        printf("Data retrieved from the cache\n");
+        printf("%s\n\n", response);
+    }else if(bytes_send_client > 0){
+        len = strlen(buffer);
+        ParsedRequest *request = ParsedRequest_create();
+        if (ParsedRequest_create(request, buffer, len) < 0) {
+            printf("parsing failed\n");
+        }else{
+            bzero(buffer, MAX_BYTES);
+            if(!strcmp)
+        }
 
 }
 int main(int argc, char *argv[]) {
@@ -116,13 +153,8 @@ int main(int argc, char *argv[]) {
     
         pthread_create(&tid[i], NULL, thread_fn, (void *)&Connected_socketId[i]);
         i++;
-    }
+    }   
 
-
-    
-    
-    
-    
 }
 
 
