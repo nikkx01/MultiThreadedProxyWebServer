@@ -89,8 +89,9 @@ void *thread_fn(void *socketNew){
             printf("parsing failed\n");
         }else{
             bzero(buffer, MAX_BYTES);
-            if(!strcmp)
         }
+    
+    } 
 
 }
 int main(int argc, char *argv[]) {
