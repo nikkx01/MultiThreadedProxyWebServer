@@ -89,6 +89,11 @@ void *thread_fn(void *socketNew){
             printf("parsing failed\n");
         }else{
             bzero(buffer, MAX_BYTES);
+            if(!strcmp(request->method, "GET")){
+                if(request->host && request->path && checkHTTPversion(request->version)==1){
+                    bytes
+                }
+            }
         }
     
     } 
@@ -157,57 +162,3 @@ int main(int argc, char *argv[]) {
     }   
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
