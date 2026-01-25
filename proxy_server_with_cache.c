@@ -41,6 +41,40 @@ pthread_mutex_t lock;
 cache_element* head;
 int cache_size;
 
+int connect
+
+int handle_request(int client_socket, ParsedRequest *request, char* tempReq){
+    char *buf = (char *)malloc(sizeof(char)* MAX_BYTES);
+    strcpy(buf, "GET ");
+    strcat(buf, request->path);
+    strcat(buf, " ");
+    strcat(buf, request->version);
+    strcat(buf, "\r\n");
+
+    size_t len = strlen(buf);
+
+    if(ParsedHeader_set(request, "Connection", "close") <0){
+        printf("set header key is not working");     
+    }
+
+    if(ParsedHeader_get(request, "Host") == NULL){
+        if(ParsedHeader_set(request, "Host", request->host) <0){
+            printf("Set Host header key is not working");     
+        }
+    }
+    if(ParsedRequest_unparse_headers(request, buf+len, (size_t)(MAX_BYTES - len)) <0){
+        printf("unparse failed");
+    }
+
+    int server_port = 80;
+    if(request->port!= NULL){
+        server_port = atoi(request->port);
+    }
+
+
+
+
+
 void *thread_fn(void *socketNew){
     sem_wait(&semaphore);
     int p;
