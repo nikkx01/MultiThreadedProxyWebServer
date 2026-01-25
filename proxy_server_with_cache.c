@@ -92,21 +92,30 @@ void *thread_fn(void *socketNew){
             if(!strcmp(request->method, "GET")){
                 if(request->host && request->path && checkHTTPversion(request->version)==1){
                     bytes_send_client = handle_request(socket, request, tempReq);
-                    if(bytes_send_client == -1)
-                    sendErrorMessage(socket,500);
-                    }else{
+                    if(bytes_send_client == -1){
                         sendErrorMessage(socket,500);
                     }
                 }else{
-                    printf("This code doesn't support any method apart from GET\n");
+                    sendErrorMessage(socket,500);
                 }
+            }else{
+                printf("This code doesn't support any method apart from GET\n");
             }
-            
         }
-    
-    } 
-
+        ParsedRequest_destroy(request);
+    }else if(bytes_send_client == 0){
+        printf("client is disconnected");      
+    }
+    shutdown(socket, SHUT_RDWR);
+    close(socket);
+    free(buffer);
+    sem_post(&semaphore);
+    sem_getvalue(&semaphore, p);
+    printf("semaphore post value is:%d\n", p);
+    free(tempReq);
+    return NULL;
 }
+
 int main(int argc, char *argv[]) {
     int client_socketId, client_len;
     struct sockaddr_in server_addr , client_addr;
