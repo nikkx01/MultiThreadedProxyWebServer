@@ -88,7 +88,7 @@ int handle_request(int client_socket, ParsedRequest *request, char* tempReq){
     }
     int remoteSocketId = connectRemoteServer(request->host, server_port);
 
-    
+
 
 
 
@@ -230,3 +230,4 @@ int main(int argc, char *argv[]) {
     }   
 
 }
+
