@@ -167,6 +167,7 @@ void *thread_fn(void *socketNew){
     return NULL;
 }
 
+
 int main(int argc, char *argv[]) {
     int client_socketId, client_len;
     struct sockaddr_in server_addr , client_addr;
