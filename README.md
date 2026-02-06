@@ -72,6 +72,9 @@ The project is designed as a system-level networking application for learning an
 4. Run the proxy server:
    ./proxy 8080
 
+Open http://localhost:port/https://www.cs.princeton.edu/
+
+
 ## How to use
 This is a local system-level application and is not hosted online.
 1. Start the proxy server on a local port
