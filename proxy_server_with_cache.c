@@ -358,29 +358,29 @@ cache_element* find(char* url){
 }
 
 void remove_cache_element(){
-    cache_element * p ;  	// Cache_element Pointer (Prev. Pointer)
-	cache_element * q ;		// Cache_element Pointer (Next Pointer)
-	cache_element * temp;	// Cache element to remove
+    cache_element * p ;  	
+	cache_element * q ;		
+	cache_element * temp;	
     //sem_wait(&cache_lock);
     int temp_lock_val = pthread_mutex_lock(&lock);
 	printf("Lock is acquired\n"); 
-	if( head != NULL) { // Cache != empty
+	if( head != NULL) { 
 		for (q = head, p = head, temp =head ; q -> next != NULL; 
-			q = q -> next) { // Iterate through entire cache and search for oldest time track
+			q = q -> next) { 
 			if(( (q -> next) -> lru_time_track) < (temp -> lru_time_track)) {
 				temp = q -> next;
 				p = q;
 			}
 		}
 		if(temp == head) { 
-			head = head -> next; /*Handle the base case*/
+			head = head -> next; 
 		} else {
 			p->next = temp->next;	
 		}
 		cache_size = cache_size - (temp -> len) - sizeof(cache_element) - 
-		strlen(temp -> url) - 1;     //updating the cache size
+		strlen(temp -> url) - 1;     
 		free(temp->data);     		
-		free(temp->url); // Free the removed element 
+		free(temp->url);  
 		free(temp);
 	} 
 	//sem_post(&cache_lock);
@@ -402,11 +402,11 @@ int add_cache_element(char* data,int size,char* url){
             remove_cache_element();
         }
         cache_element* element = (cache_element*) malloc(sizeof(cache_element)); 
-        element->data= (char*)malloc(size+1); // Allocating memory for the response to be stored in the cache element
+        element->data= (char*)malloc(size+1); 
 		strcpy(element->data,data); 
-        element -> url = (char*)malloc(1+( strlen( url )*sizeof(char)  )); // Allocating memory for the request to be stored in the cache element (as a key)
+        element -> url = (char*)malloc(1+( strlen( url )*sizeof(char)  )); 
 		strcpy( element -> url, url );
-		element->lru_time_track=time(NULL);    // Updating the time_track
+		element->lru_time_track=time(NULL);    
         element->next=head; 
         element->len=size;
         head=element;
