@@ -22,7 +22,7 @@
 
 typedef struct cache_element cache_element;
 
-struct cache_element {
+struct cache_element { 
     char* data;
     int len;
     char* url;
