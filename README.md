@@ -72,7 +72,7 @@ The project is designed as a system-level networking application for learning an
 4. Run the proxy server:
    ./proxy 8080
 
-Open http://localhost:port/https://www.cs.princeton.edu/
+Open http://localhost:8080/https://www.cs.princeton.edu/
 
 
 ## How to use
@@ -81,8 +81,9 @@ This is a local system-level application and is not hosted online.
 2. Configure your browser’s proxy settings:
    * Server: 127.0.0.1
    * Port: 8080
-3. Browse any HTTP website normally
+3. Browse any HTTP website normally (use icognito mode)
 4. Observe terminal logs for request handling and cache hits/misses
+
 
 ## Learning Outcomes
 * Understanding proxy server architecture
